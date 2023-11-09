@@ -147,7 +147,7 @@
     <Compile Include="Commands\PCSystem.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Commands\Screenshot.cs" />
-    <Compile Include="Logs\NLogConfiguration.cs" />
+    <Compile Include="NLogConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respond.cs" />

@@ -4,7 +4,6 @@ using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot;
 using System.Threading.Tasks;
-using PcTgBot.Logs;
 using NLog;
 
 namespace PcTgBot

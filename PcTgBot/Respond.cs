@@ -6,7 +6,6 @@ using Telegram.Bot.Types;
 using Telegram.Bot;
 using PcTgBot.Commands;
 using NLog;
-using PcTgBot.Logs;
 
 namespace PcTgBot
 {

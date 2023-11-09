@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace PcTgBot.Logs
+namespace PcTgBot
 {
     internal class NLogConfiguration
     {
@@ -27,7 +27,7 @@ namespace PcTgBot.Logs
         public static string GetLatestLogs()
         {
             return string.Join(
-                Environment.NewLine, 
+                Environment.NewLine,
                 File.ReadAllLines(Directory.GetFiles(_logPath, "*.log").LastOrDefault())
             );
         }
