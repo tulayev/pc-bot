@@ -9,6 +9,6 @@ namespace PcTgBot
             Configuration<Creds>.GetSection(nameof(Creds));
 
         public static string ProjectFolder =>
-            Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
     }
 }
