@@ -1,7 +1,6 @@
 ﻿using NLog;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace PcTgBot
 {
@@ -22,14 +21,6 @@ namespace PcTgBot
             config.AddRule(LogLevel.Info, LogLevel.Fatal, logfile);
             // Apply config           
             LogManager.Configuration = config;
-        }
-
-        public static string GetLatestLogs()
-        {
-            return string.Join(
-                Environment.NewLine,
-                File.ReadAllLines(Directory.GetFiles(_logPath, "*.log").LastOrDefault())
-            );
         }
     }
 }

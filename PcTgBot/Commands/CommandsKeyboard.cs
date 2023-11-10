@@ -14,9 +14,9 @@ namespace PcTgBot.Commands
         {
             _keyboardMarkup = new ReplyKeyboardMarkup(new[]
             {
-                new KeyboardButton[] { Constants.LogCommand, Constants.ScreenshotCommand, Constants.ProcessesCommand, Constants.StartProcessCommand },
-                new KeyboardButton[] { Constants.KillProcessCommand, Constants.AppsCommand, Constants.SysInfoCommand, Constants.SearchWebCommand },
-                new KeyboardButton[] { Constants.SendMessageCommand, Constants.ShutdownCommand }
+                new KeyboardButton[] { Constants.ScreenshotCommand, Constants.ProcessesCommand, Constants.StartProcessCommand },
+                new KeyboardButton[] { Constants.KillProcessCommand, Constants.AppsCommand, Constants.SysInfoCommand },
+                new KeyboardButton[] { Constants.SearchWebCommand, Constants.SendMessageCommand, Constants.ShutdownCommand }
             })
             {
                 ResizeKeyboard = true

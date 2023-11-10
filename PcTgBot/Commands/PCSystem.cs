@@ -77,7 +77,7 @@ namespace PcTgBot.Commands
             var sizeSuffixes = new[] { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
             
             if (value < 0) 
-                return "-" + SizeSuffix(-value); 
+                return $"-{SizeSuffix(-value)}"; 
             
             if (value == 0) 
                 return "0.0 bytes"; 
@@ -179,10 +179,11 @@ namespace PcTgBot.Commands
             return sb.ToString();
         }
 
-        public void ShutDown()
+        public bool IsShutdown(string messageText)
         {
-            ManagementBaseObject mboShutdown = null;
-            
+            if (messageText.ToLower() != "yes" || messageText.ToLower() != "y")
+                return false;
+
             // You can't shutdown without security privileges
             var mcWin32 = new ManagementClass("Win32_OperatingSystem");
             mcWin32.Get();
@@ -193,8 +194,11 @@ namespace PcTgBot.Commands
             mboShutdownParams["Flags"] = "1";
             mboShutdownParams["Reserved"] = "0";
 
+            ManagementBaseObject mboShutdown;
             foreach (var manObj in mcWin32.GetInstances())
                 mboShutdown = (manObj as ManagementObject).InvokeMethod("Win32Shutdown", mboShutdownParams, null);
+
+            return true;
         }
     }
 }

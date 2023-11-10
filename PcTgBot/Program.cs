@@ -14,7 +14,7 @@ namespace PcTgBot
         {
             NLogConfiguration.Setup();
             var botClient = new TelegramBotClient(ConfigSettings.Creds.BotToken);
-            var respond = new Respond();
+            var respond = new ResponseHandler();
 
             using (var cts = new CancellationTokenSource())
             {
@@ -35,6 +35,7 @@ namespace PcTgBot
 
                 LogManager.GetCurrentClassLogger().Info($"Start listening for @{me.Username}");
                 Console.WriteLine($"Start listening for @{me.Username}");
+                Console.WriteLine("Press any key to terminate...");
                 Console.ReadLine();
 
                 // Flush and close down internal threads and timers

@@ -142,6 +142,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\BotState.cs" />
     <Compile Include="Commands\CommandsKeyboard.cs" />
     <Compile Include="Commands\Processes.cs" />
     <Compile Include="Commands\PCSystem.cs" />
@@ -150,7 +151,7 @@
     <Compile Include="NLogConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Respond.cs" />
+    <Compile Include="ResponseHandler.cs" />
     <Compile Include="ConfigSettings.cs" />
     <Compile Include="Settings\Configuration.cs" />
     <Compile Include="Settings\Creds.cs" />

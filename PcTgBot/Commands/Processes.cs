@@ -8,8 +8,6 @@ using NLog;
 
 namespace PcTgBot.Commands
 {
-    enum BotState { StartProcess, KillProcess, SearchWeb, SendMessage, Wait }
-
     internal class Processes
     {
         private readonly PCSystem _system;
@@ -23,7 +21,6 @@ namespace PcTgBot.Commands
         private bool ProcessStarted(string appName)
         {
             var exeFolder = _system.GetApplictionInstallPath(appName);
-            BotState = BotState.Wait;
 
             if (!string.IsNullOrWhiteSpace(exeFolder))
             {
@@ -66,7 +63,6 @@ namespace PcTgBot.Commands
 
         private bool ProcessKilled(string processName)
         {
-            BotState = BotState.Wait;
             var processes = Process.GetProcesses();
 
             foreach (var process in processes)
@@ -81,16 +77,13 @@ namespace PcTgBot.Commands
             return false;
         }
 
-        private string SearchWeb(string query)
+        private void SearchWeb(string query)
         {
-            BotState = BotState.Wait;
             Process.Start($"microsoft-edge:https://www.google.com/search?q={query}");
-            return "Opened MS Edge for Google search";
         }
 
         private void SendMessage(string text)
         {
-            BotState = BotState.Wait;
             MessageBox.Show(text, "Message by Bot", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -119,10 +112,11 @@ namespace PcTgBot.Commands
             switch (BotState)
             {
                 case BotState.StartProcess:
+                    BotState = BotState.Wait;
                     if (ProcessStarted(messageText))
                     {
                         response = $"{messageText} started";
-                        Console.WriteLine($"Launching app: {messageText}");
+                        LogManager.GetCurrentClassLogger().Info($"Launching app: {messageText}");
                     }
                     else
                     {
@@ -130,10 +124,11 @@ namespace PcTgBot.Commands
                     }
                     break;
                 case BotState.KillProcess:
+                    BotState = BotState.Wait;
                     if (ProcessKilled(messageText))
                     {
                         response = $"{messageText} is terminated";
-                        Console.WriteLine($"Process terminated: {messageText}");
+                        LogManager.GetCurrentClassLogger().Info($"Process terminated: {messageText}");
                     }
                     else
                     {
@@ -141,10 +136,19 @@ namespace PcTgBot.Commands
                     }
                     break;
                 case BotState.SearchWeb:
+                    BotState = BotState.Wait;
                     SearchWeb(messageText);
+                    response = "Opened MS Edge for Google search";
                     break;
                 case BotState.SendMessage:
+                    BotState = BotState.Wait;
                     SendMessage(messageText);
+                    response = "Message sent!";
+                    break;
+                case BotState.Shutdown:
+                    BotState = BotState.Wait;
+                    var isShutdown = _system.IsShutdown(messageText);
+                    response = isShutdown ? "PC has been switched off!" : "You canceled the shutdown operation.";
                     break;
             }
 

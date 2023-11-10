@@ -9,13 +9,13 @@ using NLog;
 
 namespace PcTgBot
 {
-    internal class Respond
+    internal class ResponseHandler
     {
         private readonly Screenshot _screenshot;
         private readonly PCSystem _system;
         private readonly Processes _processes;
 
-        public Respond()
+        public ResponseHandler()
         {
             _screenshot = new Screenshot();
             _system = new PCSystem();
@@ -28,11 +28,9 @@ namespace PcTgBot
 
             switch (text)
             {
-                case Constants.LogCommand: 
-                    response = NLogConfiguration.GetLatestLogs(); 
-                    break;
                 case Constants.ScreenshotCommand:
                     await _screenshot.SendPrintScreen(botClient, update, cancellationToken);
+                    response = "Screenshot sent";
                     break;
                 case Constants.ProcessesCommand: 
                     response = _processes.GetRunningProcessesList(); 
@@ -59,8 +57,9 @@ namespace PcTgBot
                     response = "Write something...";
                     _processes.BotState = BotState.SendMessage; 
                     break;
-                case Constants.ShutdownCommand: 
-                    _system.ShutDown(); 
+                case Constants.ShutdownCommand:
+                    response = "WARNING! Your PC is going to be turned off! Do you want to proceed next?\r\nType Yes (y) or No (n)";
+                    _processes.BotState = BotState.Shutdown; 
                     break;
             }
 
