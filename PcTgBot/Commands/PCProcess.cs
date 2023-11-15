@@ -8,12 +8,12 @@ using NLog;
 
 namespace PcTgBot.Commands
 {
-    internal class Processes
+    internal class PCProcess
     {
         private readonly PCSystem _system;
         public BotState BotState { get; set; } = BotState.Wait;
 
-        public Processes(PCSystem system)
+        public PCProcess(PCSystem system)
         {
             _system = system;
         }

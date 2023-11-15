@@ -144,7 +144,7 @@
   <ItemGroup>
     <Compile Include="Commands\BotState.cs" />
     <Compile Include="Commands\CommandsKeyboard.cs" />
-    <Compile Include="Commands\Processes.cs" />
+    <Compile Include="Commands\PCProcess.cs" />
     <Compile Include="Commands\PCSystem.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Commands\Screenshot.cs" />

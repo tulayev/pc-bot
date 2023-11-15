@@ -14,7 +14,7 @@ namespace PcTgBot
         {
             NLogConfiguration.Setup();
             var botClient = new TelegramBotClient(ConfigSettings.Creds.BotToken);
-            var respond = new ResponseHandler();
+            var responseHandler = new ResponseHandler();
 
             using (var cts = new CancellationTokenSource())
             {
@@ -25,8 +25,8 @@ namespace PcTgBot
                 };
 
                 botClient.StartReceiving(
-                    updateHandler: respond.HandleUpdateAsync,
-                    pollingErrorHandler: respond.HandlePollingErrorAsync,
+                    updateHandler: responseHandler.HandleUpdateAsync,
+                    pollingErrorHandler: responseHandler.HandlePollingErrorAsync,
                     receiverOptions: receiverOptions,
                     cancellationToken: cts.Token
                 );
