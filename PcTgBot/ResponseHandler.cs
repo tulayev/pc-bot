@@ -44,7 +44,7 @@ namespace PcTgBot
                     _process.BotState = BotState.KillProcess; 
                     break;
                 case Constants.AppsCommand: 
-                    response = _system.GetInstalledAppsList(); 
+                    response = _system.GetInstalledAppsListText(); 
                     break;
                 case Constants.SysInfoCommand: 
                     response = _system.GetSystemInfo(); 

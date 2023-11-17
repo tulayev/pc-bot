@@ -20,7 +20,7 @@ namespace PcTgBot.Commands
 
         private bool ProcessStarted(string appName)
         {
-            var exeFolder = _system.GetApplictionInstallPath(appName);
+            var exeFolder = _system.GetAppInstallationPath(appName);
 
             if (!string.IsNullOrWhiteSpace(exeFolder))
             {
@@ -38,7 +38,7 @@ namespace PcTgBot.Commands
                             fileSize = files[i].Length;
                     }
 
-                    foreach (FileInfo file in files)
+                    foreach (var file in files)
                     {
                         if (file.Length == fileSize)
                             exeFile = file.Name;
