@@ -84,7 +84,8 @@ namespace PcTgBot.Commands
 
         private void SendMessage(string text)
         {
-            MessageBox.Show(text, "Message by Bot", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var messageBoxTitle = "Message by Bot";
+            MessageBox.Show(text, messageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
         }
 
         public string GetRunningProcessesList()
