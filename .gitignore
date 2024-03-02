@@ -219,8 +219,11 @@ project.lock.json
 *.feature.xlsx.*
 *.Specs_*.html
 
-#Ignore Log files
+# Ignore Log files
 **/Logs/*.log
+
+# Ignore also appsettings.json as it contains sensitive data
+**/appsettings.json
 
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
